@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodic Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Periodic Table</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Element</th>
+                <th>Symbol</th>
+                <th>Atomic Number</th>
+                <th>Atomic Mass</th>
+            </tr>
+        </thead>
+        <tbody id="periodic-table">
+            <!-- Table rows will be populated here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch the JSON data from the repository's raw link
+        fetch('https://raw.githubusercontent.com/your-username/Periodic-Table-JSON/main/periodic-table-lookup.json')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('periodic-table');
+                data.elements.forEach(element => {
+                    const row = document.createElement('tr');
+
+                    // Create cells for each property
+                    const nameCell = document.createElement('td');
+                    nameCell.textContent = element.name;
+                    row.appendChild(nameCell);
+
+                    const symbolCell = document.createElement('td');
+                    symbolCell.textContent = element.symbol;
+                    row.appendChild(symbolCell);
+
+                    const numberCell = document.createElement('td');
+                    numberCell.textContent = element.number;
+                    row.appendChild(numberCell);
+
+                    const massCell = document.createElement('td');
+                    massCell.textContent = element.atomic_mass;
+                    row.appendChild(massCell);
+
+                    // Append the row to
